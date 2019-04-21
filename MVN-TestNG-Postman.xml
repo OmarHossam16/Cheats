@@ -1,0 +1,88 @@
+<!-- MAVEN -->
+/ ~$ mvn archetype:generate -DgroupId=mvnp -DartifactId=MavenProject -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+<!-- import surefire to pom.xml -->
+https://maven.apache.org/surefire/maven-surefire-plugin/usage.html 
+
+/Project ~$ mvn clean <!-- N/R just cleans cache -->
+/Project ~$ mvn compile <!-- N/R just to check errors -->
+/Project ~$ mvn test 
+/Project ~$ mvn -Dtest=SeleniumTest <!-- test test only specific file -->
+/Project ~$ mvn test -PidName 
+<profiles>
+	<profile>
+		<id>idName</id>
+		Using Suite XML <!-- check link below -->
+	</profile>
+</profiles>
+
+<!-- TestNG Integration (Configuring TestNG + Using Suite XML)-->
+https://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html
+<!-- ====================================================== -->
+
+
+<!-- TestNG -->
+@Test
+@Before/After [ Test - Suite - Method - Class]
+@Test(enabled=false)
+@Test(timeOut=3000) <!-- won't fail till 3secs -->
+
+<!-- method1,2 exectutes first -->
+@Test(dependsOnMethods={"method1","method2"})
+public void method3()
+
+
+
+<suite name="" parallel="tests" thread-count="2"> <!-- not prefered -->
+<methods name="">
+	<exclude name="Mobile.*" /> <!-- or include -->
+	<!-- .* selects all methods starts with Mobile  -->
+</methods>
+
+
+
+<!-- Only Run the groups -->
+@Test(groups={"gr"})
+<test>
+	<groups>
+		<run>
+			<include name="gr"/>
+		</run>
+	</groups>
+</test>
+
+
+
+<parameter name="URL" value="google"/>
+@Parameters({"URL"}) <!-- can take multiple pars -->
+@Test
+public void method(String url)
+
+
+
+<listeners>
+	<listener class-name="package-name.Listeners"/>
+</listeners>
+<!-- Listeners.java -->
+public class Listeners implements ITestListener{}
+result. <!-- methods -->
+
+<!-- Retry Failed Test Cases -->
+public class RetryAnalyzer implements IRetryAnalyzer {
+ 
+  private int retryCount = 0;
+  private static final int maxRetryCount = 3;
+ 
+  @Override
+  public boolean retry(ITestResult result) {
+    if (retryCount < maxRetryCount) {
+      retryCount++;
+      return true;
+    }
+    return false;
+  }
+}
+
+@Test(retryAnalyzer = RetryAnalyzer.class)
+
+

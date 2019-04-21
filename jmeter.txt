@@ -1,0 +1,256 @@
+latency = time to first byte
+
+# Create first Jmeter Test
+=========================
+  1. Start Jmeter
+  2. Create a TestPlan
+  3. Create a Thread Group (Users)
+  4. Add a Sampler (Http)
+  5. Add Listeners
+
+
+# Assertions
+=================================
+  1. Response Assertion
+  2. Duration Assertion
+  3. Size Assertion
+  4. HTML Assertion
+  5. XML Assertion
+  6. XPATH Assertion
+
+
+# Listeners
+================================
+  1. View Results in Table
+  2. View Results Tree
+  3. Aggregate Report
+  4. Graph Results
+  5. Summary Report
+  6. Simple Data Writer
+
+
+# Record UI Test
+==========================================
+  2. Record a Test
+  3. Export as Jmeter (.jmx) Script
+  4. Open the script in Jmeter
+  5. Add listeners
+  6. Run and validate
+
+
+# Create a Database Test Plan
+====================================================
+  1. Add mysql jdbc jar to Jmeter lib folder | Restart Jmeter
+  2. Add Thread Group
+  3. Add JDBC Conn Config | Provide the details of our DB
+  4. Add JDBC Request
+  5. Add Listeners
+  6. Run and validate
+
+
+# Create assertions for JDBC (Database) Test Plan
+===========================================================
+  1. Add a Response Assertion
+  2. Add variable names in JDBC Request -->Col1,Col2,Col3
+    
+  Col1 Col2   Col3
+  ===  ===    ===
+  ID   Name   Age
+  1    Omar   20
+  2    Hossam 50
+
+  Col3_2 = 50
+  Col2_1 = Omar
+
+  3. In Response Assertion add Jmeter Variable and Pattern to Test
+  4. Add Listener Assertion Results
+  5. Run and validate
+
+
+# Run jmeter from Command Line (non GUI mode)
+================================================================
+  baseCommand = ~/bin$ jmeter -n -t scrpitLocation 
+  -l resultFileLocation
+
+
+# Test FTP upload and download
+======================================================
+  1. Add a FTP Request Sampler
+  2. Add FTP connection parameters
+  3. FTP GET and validate
+  4. FTP PUT and validate
+
+
+# Parameterize FTP test
+=============================================
+  (To upload files with different names to FTP)
+  1. add CSV Data Set Config
+  2. create a csv file and provide its location in CSV Data Set Config
+  3. parametrize FTP PUT request to take value from csv file
+  4. Run and Validate
+
+
+# Performance Test of Web Services (API)
+=======================================================
+  SOAP/XML-RPC Request Sampler not Working Use HTTP Request Sampler
+  Test REST API
+  ————————————
+  1. Add HTTP Request Sampler
+  2. Add REST API details
+  3. Run and Validate
+
+
+# Create HTML Reports (Dashboard reports) from command line
+============================================================
+  1. Create Test Plan and save it (and close).
+  2. Open command line and change dir to jmeter/bin
+  3. Execute command : baseCommand + -e -o outputLocation
+
+    create report from a standalone csv file
+    ——————————————————————
+    jmeter -g csvLocation -o outputLocation
+
+
+# Read data from csv file - Parameterisation
+============================================================
+  1. Add config element - CSV Data Set Config
+  2. Add details in CSV Data Set Config
+  3. Update value fields: ${variable_name}
+  4. Run and validate
+
+# Functions and Variables
+===========================================
+  ${__functionName}
+  ${__functionName(var1, var2)}
+  ${variableName}
+
+  Functions:
+  —————
+  1. log  - ${__log(“message”)}
+  2. time - 
+  3. threadNum
+  4. intSum
+
+
+# Pacing 
+===========================================
+  - controlled ramp-up and down of virtual users
+  - control timing between iterations
+  - achieve x iterations in y mins/sec
+
+  1. Add Plugin - ig Thread Group
+  2. Setup load with required settings
+  3. Run and validate
+
+
+# TIMERS (add Think Time)
+===================================================
+  - to pause thread (v.user) for some time
+  - to add delay between threads
+  - to avoid over flooding the server and achieve real time behaviour by pacing the load
+  (to simulate v. user’s THINK TIME)
+
+  . Constant Timer
+
+  . Uniform Random Timer
+  —————————————————————————
+  Delay from ( [Constant Delay Offset] to [Random Delay Max] )
+
+
+# Run Scheduled + Sequential Execution
+===================================================
+
+  RUN A TEST FOR SPECIFIC DURATION 
+  ————————————————————————————————————————————
+  Thread Group - Forever - Scheduler - Duration
+
+  1. Thread Group - make loop count = forever
+  2. Select Scheduler checkbox
+  3. Add duration (sec)
+
+
+  RUN PERFORMANCE TEST SEQUENTIALLY 
+  ——————————————————————————————————————
+  Test Plan - Run Thread Group Consecutively
+
+  1. Test Plan - select Run Thread Groups consecutively
+
+  ADD WEBSITES SEQUENTIALLY TO A PERFORMANCE TEST
+  ——————————————————————————————————————————————————————
+  Thread Group - Forever - Scheduler - Duration + Startup Delay
+
+  1. Add duration (max) to first thread group - 30 sec
+  2. To consecutive thread groups add delay 
+
+# Regular Expression Extractor
+===================================================
+  1. Create a Test Plan where you want to do dynamic referencing in JMeter
+  2. Add Regular Expression Extractor in the Step from where response value(s) needs to be extracted
+  3. Refer the extracted value (referred by Reference Name) into a subsequent step
+  4. Run and validate
+
+
+# Create your own Template
+===================================================
+  1. save your test plan as .jmx file
+  2. place the .jmx inside jmeter/bin/templates
+  3. edit templates.xml file to add your template
+  4. restart JMeter and check
+
+  templates.xml 
+  __________________
+
+  template 
+  isTestPlan=”true”     :    template will create a new test plan
+  isTestPlan=”false”    :    templat will be merged into existing test plan
+  name : Name of the template
+  fileName  : location of .jmx file
+  description  : description will be displayed in html 
+
+
+# Record with Test Script Recorder(Not Recommended)
+===================================================
+   Use Blazemeter and Export json and convert
+   converter.blazemeter.com (json-->jmx)
+  (Use inbuilt Recording template to save time)
+  1. Add Test Script Recorder Test Plan - Non-Test Elements - HTTP(S) Test Script Recorder
+  2. In a Thread Group add Logic Controller - Recording Controller
+  3. Add the values in Test Script Recorder parameters
+  4. Set Browser Proxy Configuration
+  5. Install the certificate in your browser (if required)
+  6. Start Recording
+  7. Run and validate
+
+
+# Debug
+===========
+  1. Analyse with Listener - View Results Tree
+  2. Analyse information in Log Viewer
+  3. Add Listner - Debug Sampler
+
+  Use Debug PostProcessor
+  ____________________________
+  Enable Debug for elements
+  Using external plugins for Debugging
+
+
+# Create test for file download
+============================================
+  to avoid overwriting downloaded files.
+  in a multi-user test Use ${__threadNum} as Prefix
+
+  1.Add Thread Group - HTTP Request sampler
+  2. Add values in HTTP Request sampler
+  3. Add Listeners to view results
+  4. Add Listener - Save Responses to a file
+  5. Add values to this Listener
+  6. Run and Validate
+
+
+# Create test for File Upload
+============================================
+  1. Create a Test Plan - Thread Group - HTTP Request
+  2.  Add values in HTTP Request sampler
+  3. Add File Upload details
+  4. Add Listeners to view results 
+  5. Run and Validate

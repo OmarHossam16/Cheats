@@ -1,0 +1,110 @@
+QA : Define the process & Prevent Defects
+QC : Implement the tests following the process & Detect Defects
+
+Verification/Static Testing (Docs):
+1-Reviews :
+	- Requirement
+	- Design
+	- Code
+	- Test Plan 
+	- Test Case
+
+2- Walkthrough(author leads the meeting) :
+	- Informal meeting to gain understanding and find defects
+
+3-Inspection(trained moderator leads the meeting):
+	- Author (Reader)
+	- Writer
+	- Modifier
+	- Team (QA - Dev - Management)
+
+Validation/Dynamic Testing (Software):
+	- Unit
+	- Integration
+	- System
+	- UAT
+
+White Box(Devs) : Internal Code ( Unit Level )
+Black Box(Testers) : Functionality ( Unit/Integration/System Level)
+Grey Box
+
+Positive Testing : What the system suppose to do
+Negative Testing : What .. not .. and find defects
+
+Test Harness : running app under varying conditions and monitor output
+
+Integration Testing : testing interface between 2 software units
+Big Bang : Combine 2 Modules after testing individually
+Top-Down : Login(Ready) --> Admin(STUB) 
+Bottom-Up: Login(Driver) <-- Admin(Ready)
+
+System Testing(E2E) : Verify app working as intended
+
+Alpha Testing : done by the in-house developers or client
+Beta Testing : done in the client place
+Gamma Testing : done at the client place, directly by skipping all the in-house testing activities
+
+Smoke : Verifies Critical Funcs
+Sanity : Verifies new Funcs and Bug Fixes
+
+Re-Testing : Testing the same thing after changes
+Regression : Test other funcs related to the bug fixed or changes
+Adhoc : Try to break the app
+
+Formal, Risk, Based, Compatibility, Exploratory, Monkey, Usability,
+Soak(Endurance)non-func, Performance, Load, Volume, Stress, Scalability,
+
+Fuzz Testing : Identify coding errors
+Reliability Testing : test continuously for long period of time 
+Bucket(A/B-Split) Testing : compare 2 versions
+
+Defect Clustering : Small module contains most of bugs
+Pesticide Paradox : Repeating the same test cases ant they will no longer find new bugs
+Defect Cascading : Defects which triggers another defects
+Error Seeding : Adding Errors Intendedly to test tester skills and the app stability
+Showstopper Defect(Crash)
+HotFix(HP)
+
+State Transition / Transitions
+
+Boundary Value Analysis(BVA):
+
+Software Testing Life Cycle (STLC):
+	1- Requirements Analysis
+	2- Test Planning (Test Lead/Manager)
+	3- Test Scenarios (What to test)
+	4- Test Cases (How to test it)
+	5- Environment Setup
+	6- Test Execution
+	7- Test Cycle Closure (Test Cases/Defects/Fixed/Bugs/Rejected Bugs)
+
+Execution Report :
+	- TC#ID
+	- Scenario
+	- Title
+	- Steps
+	- Expected Result
+	- Actual Result
+	- Data
+	- Result
+
+Bug Report :
+	- Bug#ID
+	- TC#ID
+	- Description
+	- Steps
+	- Screenshot
+	- Sevirity (S1: - S3: )
+	- Prioirity (P0:High - P3:Low)
+	- Reported By
+	- Assigned to
+	- Resolution (Accepted)
+	- Status (Open - InProgress)
+	- Fixed Date
+
+JIRA :
+Epic 
+	|_ Sprints
+		|_ Stories
+			|_ Sub-Stories
+Zypher Test
